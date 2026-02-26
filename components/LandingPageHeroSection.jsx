@@ -51,7 +51,7 @@ const LandingPageHeroSection = () => {
   delay={200}
   animateBy="words"
   direction="top"
-  className="text-4xl mb-8 font-bold"
+  className="text-4xl mb-8 font-bold text-center"
 />
       </div>
     </section>

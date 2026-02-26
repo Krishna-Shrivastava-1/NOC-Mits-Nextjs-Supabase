@@ -142,7 +142,7 @@ export default function DashboardLayout({ children }) {
               "ml-3 font-bold tracking-tight transition-all duration-300 whitespace-nowrap",
               isExpanded ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4 pointer-events-none"
             )}>
-              College NOC
+              MITS NOC
             </span>
           </div>
 

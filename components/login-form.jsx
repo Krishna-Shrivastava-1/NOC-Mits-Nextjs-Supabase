@@ -71,9 +71,16 @@ export function LoginForm({ className, ...props }) {
       <form onSubmit={handleLogin}>
         <FieldGroup>
           <div className="flex flex-col items-center gap-2 text-center">
-            <div className="flex size-8 items-center justify-center rounded-md">
-                 <Image width={100} height={100} src="https://sdms.mitsgwalior.in/images/mits.png" alt="logo" />
-            </div>
+
+             <div className="relative w-24 h-24">
+  <Image
+    src="https://sdms.mitsgwalior.in/images/mits.png"
+    alt="logo"
+    fill
+    className="object-contain"
+  />
+</div>
+            
             <h1 className="text-xl font-bold">College NOC Management</h1>
           </div>
           <Field>

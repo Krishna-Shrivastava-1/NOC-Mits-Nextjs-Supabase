@@ -11,7 +11,7 @@ const page = async({params}) => {
     if(!data || error){
         redirect('/dashboard/student')
     }
-    console.log(data)
+    // console.log(data)
   return (
     <div>
       <NocRequestForm application={data} />

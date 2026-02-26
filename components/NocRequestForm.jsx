@@ -23,7 +23,11 @@ import FileUpload from "./FileUpload";
 import { Textarea } from "./ui/textarea";
 import { supabase } from "@/lib/supabase";
 import { uploadNocFile } from "@/lib/uploadNocFile";
+import { useRouter } from "next/navigation";
 const NocRequestForm = ({application =null}) => {
+
+  const router = useRouter()
+
     const [companyName, setcompanyName] = useState("")
     const [yearOfStudy, setyearOfStudy] = useState('')
     const [semester, setsemester] = useState("")
@@ -100,95 +104,7 @@ const resetForm = () => {
   setcompanyrecieverdesignation('')
   setSelectedFile(null)
 }
-// const handleApplicationCreation=async (e) => {
-//     e.preventDefault()
-//     setIsLoading(true)
-//     try {
-//         let fileUrl = null
-// let userId
-// let depatmentOfStudent
-//     // 🔥 Upload file only when submitting
-//     if (selectedFile) {
-//       const { data: {user},error: authError } = await supabase.auth.getUser()
-//        const dept = await supabase.from('users').select("department").eq('id',user.id).single()
-//       if (authError || !user) {
-//       throw new Error("Please log in first")
-//     }
 
-//        userId = user.id
-//        depatmentOfStudent = dept?.data?.department
-// // console.log(userId)
-//       fileUrl = await uploadNocFile(selectedFile, userId,supabase)
-//     }
-// if (application) {
-//   // 🔥 EDIT MODE
-//   const { error } = await supabase
-//     .from("noc_requests")
-//     .update({
-//       companyname: companyName,
-//       yearofstudy: yearOfStudy,
-//       semester,
-//       sessionhalf,
-//       sessionyear,
-//       duration,
-//       location,
-//       startdate: startDate,
-//       enddate: endDate,
-//       stipend,
-//       worktype: worktype.charAt(0).toLowerCase() + worktype.slice(1),
-//       roleincompany: jobrole,
-//       jobdescription,
-//       companyrecievername,
-//       companyrecieverdesignation,
-//       offerletteruri: fileUrl ?? application.offerletteruri,
-
-//       // 🔥 RESET WORKFLOW
-//       nocstatusdepartment: "pending",
-//       allowededit: false,
-//     })
-//     .eq("id", application.id)
-
-//   if (error) throw error
-
-//   toast.success("Application updated and resubmitted!")
-// } else {
-//   // 🔥 CREATE MODE
-//   const { error } = await supabase
-//     .from("noc_requests")
-//     .insert({
-//       student_id: userId,
-//       companyname: companyName,
-//       yearofstudy: yearOfStudy,
-//       semester,
-//       sessionhalf,
-//       sessionyear,
-//       duration,
-//       location,
-//       startdate: startDate,
-//       enddate: endDate,
-//       stipend,
-//       worktype: worktype.charAt(0).toLowerCase() + worktype.slice(1),
-//       roleincompany: jobrole,
-//       jobdescription,
-//       companyrecievername,
-//       companyrecieverdesignation,
-//       offerletteruri: fileUrl,
-//       department: depatmentOfStudent
-//     })
-
-//   if (error) throw error
-
-//   toast.success("Application submitted successfully!")
-// }
-//     resetForm()
-
-//   } catch (error) {
-//     console.error(error)
-//     toast.error("Something went wrong")
-//   } finally {
-//     setIsLoading(false)
-//   }
-// }
 function extractPathFromUrl(url) {
   if (!url) return null
   const parts = url.split("/noc-files/")
@@ -307,6 +223,7 @@ if (new Date(startDate) >= new Date(endDate)) {
       if (error) throw error
 
       toast.success("Application updated and resubmitted!")
+      router.back()
     } else {
       //  CREATE MODE
       if (!fileData) {

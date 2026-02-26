@@ -5,7 +5,8 @@ import React from 'react'
 const page = async () => {
      const supabase = await createClient()
         const {data:{user}}= await supabase.auth.getUser()
-        const data = await supabase.from("noc_requests").select("*").eq('student_id',user?.id).order("createdat", { ascending: false })
+        const data = await supabase.from("noc_requests").select("*").eq('student_id',user?.id).or(
+  "nocstatusdepartment.eq.pending,nocstatusdepartment.eq.approved,nocstatusdepartment.eq.edit_requested,nocstatustandp.eq.pending").eq("nocstatustandp","pending").order("createdat", { ascending: false })
         // console.log(data)
     const columnsName =["Sr No.", "Company Name","Department Status","T&P Status","Applied Date","Comment","Edit","More"]
   return (

@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
 import { LogoutFunc } from "@/components/LogoutButton";
 import { ModeToggle } from "@/components/ModeToggle";
+import Image from "next/image";
 
 const navigationData = {
   "tp_admin": {
@@ -126,8 +127,16 @@ export default function DashboardLayout({ children }) {
         <div className="h-full flex flex-col overflow-hidden">
           {/* LOGO AREA */}
           <div className="h-16 flex items-center px-[18px]">
-            <div className="w-8 h-8 bg-primary rounded-lg flex-shrink-0 flex items-center justify-center text-primary-foreground shadow-sm">
-              <Icons.IconCertificate size={18} stroke={2} />
+            <div className="w-8 h-8  rounded-lg flex-shrink-0 flex items-center justify-center  shadow-sm">
+              {/* <Icons.IconCertificate size={18} stroke={2} /> */}
+              <div className="relative w-24 h-24">
+               <Image
+                 src="https://sdms.mitsgwalior.in/images/mits.png"
+                 alt="logo"
+                 fill
+                 className="object-contain"
+               />
+             </div>
             </div>
             <span className={cn(
               "ml-3 font-bold tracking-tight transition-all duration-300 whitespace-nowrap",
